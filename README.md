@@ -4,7 +4,7 @@ Learning REACT and ES6 by building a Movie Discovery App.
 
 ## Screens
 
-- [] Home
-- [] TV Shows
-- [] Search
-- [] Detail
+- [ ] Home
+- [ ] TV Shows
+- [ ] Search
+- [ ] Detail
