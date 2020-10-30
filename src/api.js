@@ -1,10 +1,11 @@
-import * as cdata from "critical";
 import axios from "axios";
+
+const MOVIE_API_KEY = "5181b57410b2ce3a15385acebfc7d3e0";
 
 const api = axios.create({
   baseURL: "https://api.themoviedb.org/3/",
   params: {
-    api_key: cdata.config.MOVIE_API_KEY,
+    api_key: MOVIE_API_KEY,
     language: "en-US",
   },
 });
