@@ -7,12 +7,14 @@ export default class extends React.Component {
     movieResults: null,
     tvResults: null,
     searchTerm: "",
+    previousTerm: "",
     loading: false,
     error: null,
   };
 
   handleSubmit = (evnet) => {
     evnet.preventDefault();
+
     let { searchTerm } = this.state;
     if (searchTerm) {
       searchTerm = searchTerm.trim();
@@ -33,6 +35,7 @@ export default class extends React.Component {
 
   searchByTerm = async () => {
     let { searchTerm } = this.state;
+
     this.setState({ loading: true });
     try {
       const {
@@ -43,7 +46,7 @@ export default class extends React.Component {
         data: { results: tvResults },
       } = await tvApi.search(searchTerm);
 
-      this.setState({ movieResults, tvResults });
+      this.setState({ movieResults, tvResults, previousTerm: searchTerm });
     } catch {
       this.setState({ error: "Con't find results." });
     } finally {
@@ -52,12 +55,13 @@ export default class extends React.Component {
   };
 
   render() {
-    const { movieResults, tvResults, searchTerm, error, loading } = this.state;
+    const { movieResults, tvResults, searchTerm, previousTerm, error, loading } = this.state;
     return (
       <SeachPresenter
         movieResults={movieResults}
         tvResults={tvResults}
         searchTerm={searchTerm}
+        previousTerm={previousTerm}
         error={error}
         loading={loading}
         handleSubmit={this.handleSubmit}
