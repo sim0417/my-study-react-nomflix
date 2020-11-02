@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Helmet from "react-helmet";
 import Loader from "Components/Loader";
 
 const Container = styled.div`
@@ -16,7 +17,7 @@ const BackDrop = styled.div`
   background-image: url(${(props) => props.bgUrl});
   background-position: center center;
   background-size: cover;
-  filter: blur(2px);
+  filter: blur(3px);
   opacity: 0.5;
 
   position: absolute;
@@ -50,10 +51,6 @@ const Data = styled.div`
 const Title = styled.h3`
   font-size: 32px;
   margin-bottom: 30px;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 `;
 
 const ItemContainer = styled.div`
@@ -75,14 +72,22 @@ const Overview = styled.p`
 
 const DetailPresenter = ({ result, error, loading }) =>
   loading ? (
-    <Loader />
+    <>
+      <Helmet>
+        <title>Loading... | Nomflix</title>
+      </Helmet>
+      <Loader />
+    </>
   ) : (
     <Container>
+      <Helmet>
+        <title>{result.original_title ? result.original_title : result.original_name} | Nomflix</title>
+      </Helmet>
       <BackDrop bgUrl={`https://image.tmdb.org/t/p/original${result.backdrop_path}`} />
       <Content>
         <Cover
           bgUrl={
-            result.backdrop_path
+            result.poster_path
               ? `https://image.tmdb.org/t/p/original${result.poster_path}`
               : require("../../assets/noPosterSmall.png").default
           }
