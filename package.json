@@ -25,7 +25,7 @@
     "deploy": "gh-pages -d build",
     "predeploy": "npm run build"
   },
-  "homepage": "https://5fa26aaf9446233e6601db67--stupefied-albattani-23ddbe.netlify.app/",
+  "homepage": "https://stupefied-albattani-23ddbe.netlify.app",
   "eslintConfig": {
     "extends": [
       "react-app",

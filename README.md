@@ -30,4 +30,4 @@ Learning REACT and ES6 by building a Movie Discovery App.
 
 ## Preview
 
-Link -> [netlify](https://5fa26b567db0b50007b3747e--stupefied-albattani-23ddbe.netlify.app/)
+Link -> [netlify](https://stupefied-albattani-23ddbe.netlify.app/)
