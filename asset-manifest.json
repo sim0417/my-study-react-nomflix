@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.js": "/my-study-react-nomflix/static/js/main.1b8c33ba.chunk.js",
-    "main.js.map": "/my-study-react-nomflix/static/js/main.1b8c33ba.chunk.js.map",
+    "main.js": "/my-study-react-nomflix/static/js/main.1f81d42d.chunk.js",
+    "main.js.map": "/my-study-react-nomflix/static/js/main.1f81d42d.chunk.js.map",
     "runtime-main.js": "/my-study-react-nomflix/static/js/runtime-main.9993dc98.js",
     "runtime-main.js.map": "/my-study-react-nomflix/static/js/runtime-main.9993dc98.js.map",
-    "static/js/2.f410d999.chunk.js": "/my-study-react-nomflix/static/js/2.f410d999.chunk.js",
-    "static/js/2.f410d999.chunk.js.map": "/my-study-react-nomflix/static/js/2.f410d999.chunk.js.map",
+    "static/js/2.f28ed684.chunk.js": "/my-study-react-nomflix/static/js/2.f28ed684.chunk.js",
+    "static/js/2.f28ed684.chunk.js.map": "/my-study-react-nomflix/static/js/2.f28ed684.chunk.js.map",
     "index.html": "/my-study-react-nomflix/index.html",
-    "static/js/2.f410d999.chunk.js.LICENSE.txt": "/my-study-react-nomflix/static/js/2.f410d999.chunk.js.LICENSE.txt",
+    "static/js/2.f28ed684.chunk.js.LICENSE.txt": "/my-study-react-nomflix/static/js/2.f28ed684.chunk.js.LICENSE.txt",
     "static/media/noPosterSmall.png": "/my-study-react-nomflix/static/media/noPosterSmall.ea2ad102.png"
   },
   "entrypoints": [
     "static/js/runtime-main.9993dc98.js",
-    "static/js/2.f410d999.chunk.js",
-    "static/js/main.1b8c33ba.chunk.js"
+    "static/js/2.f28ed684.chunk.js",
+    "static/js/main.1f81d42d.chunk.js"
   ]
 }
