@@ -30,4 +30,4 @@ Learning REACT and ES6 by building a Movie Discovery App.
 
 ## Preview
 
-Link -> [netlify](https://sim0417.github.io/my-study-react-nomflix)
+Link -> [netlify](https://5fa26aaf9446233e6601db67--stupefied-albattani-23ddbe.netlify.app/)
