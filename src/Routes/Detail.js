@@ -120,7 +120,8 @@ const Tab = styled(Link)`
   cursor: pointer;
 
   &:hover {
-    border-bottom: 3px solid #3498db;
+    /* border-bottom: 3px solid #3498db; */
+    color: #7fcafc;
   }
 `;
 

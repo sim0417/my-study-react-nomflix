@@ -18,6 +18,7 @@ const VideoLink = styled.a`
   & > img {
     max-width: 100%;
     object-fit: cover;
+    border-radius: 8px;
     transition: transform 0.3s ease-in-out;
     &:hover {
       transform: scale(1.02);
