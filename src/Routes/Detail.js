@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Helmet from "react-helmet";
 import Loader from "Components/Loader";
+import Trailers from "./Trailers";
 import { moviesApi, tvApi } from "api";
+import { Route, Link } from "react-router-dom";
 
 const Container = styled.div`
   padding: 50px;
@@ -45,12 +47,39 @@ const Cover = styled.div`
 
 const Data = styled.div`
   width: 70%;
+  padding: 20px;
   margin-left: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+
+  display: grid;
+  grid-template-rows: 40% 60%;
 `;
+
+const DataRow = styled.div``;
 
 const Title = styled.h3`
   font-size: 32px;
   margin-bottom: 30px;
+`;
+
+const ImdbLink = styled.a`
+  padding: 2px 6px;
+  margin-left: 15px;
+  background-color: rgb(245, 197, 24);
+  color: black;
+  font-weight: 700;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: background-color 0.3s linear;
+
+  &::after {
+    content: "IMDB";
+  }
+
+  &:hover {
+    background-color: rgb(252 218 76);
+  }
 `;
 
 const ItemContainer = styled.div`
@@ -67,7 +96,25 @@ const Overview = styled.p`
   font-size: 12px;
   opacity: 0.8;
   line-height: 1.5;
-  width: 50%;
+  width: 100%;
+`;
+
+const InfoTabs = styled.div`
+  display: flex;
+`;
+
+const Tab = styled(Link)`
+  padding: 10px 20px;
+  font-size: 17px;
+  color: ${(props) => (props.active ? "#3498db" : "white")};
+  font-weight: ${(props) => (props.active ? "600" : "300")};
+  border-bottom: ${(props) => (props.active ? "3px solid #3498db" : "none")};
+
+  cursor: pointer;
+
+  &:hover {
+    border-bottom: 3px solid #3498db;
+  }
 `;
 
 export default (props) => {
@@ -80,6 +127,8 @@ export default (props) => {
   } = props;
 
   const isMovie = pathname.includes("/movie/");
+  const baseUrl = isMovie ? `/movie` : `/show`;
+  const contentIdUrl = `${baseUrl}/${id}`;
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
@@ -135,24 +184,58 @@ export default (props) => {
           }
         />
         <Data>
-          <Title>{result.original_title ? result.original_title : result.original_name}</Title>
-          <ItemContainer>
-            <Item>
-              {result.release_date
-                ? result.release_date.substring(0, 4)
-                : result.first_air_date.substring(0, 4)}
-            </Item>
-            <Divider>•</Divider>
-            <Item>{result.runtime ? result.runtime : result.episode_run_time[0]} min</Item>
-            <Divider>•</Divider>
-            <Item>
-              {result.genres &&
-                result.genres.map((genre, index) =>
-                  index === result.genres.length - 1 ? genre.name : `${genre.name} / `,
-                )}
-            </Item>
-          </ItemContainer>
-          <Overview>{result.overview}</Overview>
+          <DataRow>
+            <Title>
+              <span>{result.original_title ? result.original_title : result.original_name}</span>
+              {result.imdb_id && (
+                <ImdbLink href={`https://www.imdb.com/title/${result.imdb_id}`} target="_blank" />
+              )}
+            </Title>
+            <ItemContainer>
+              <Item>
+                {result.release_date
+                  ? result.release_date.substring(0, 4)
+                  : result.first_air_date.substring(0, 4)}
+              </Item>
+              <Divider>•</Divider>
+              <Item>{result.runtime ? result.runtime : result.episode_run_time[0]} min</Item>
+              <Divider>•</Divider>
+              <Item>
+                {result.genres &&
+                  result.genres.map((genre, index) =>
+                    index === result.genres.length - 1 ? genre.name : `${genre.name} / `,
+                  )}
+              </Item>
+            </ItemContainer>
+            <Overview>{result.overview}</Overview>
+          </DataRow>
+          <DataRow>
+            <InfoTabs>
+              <Tab active={pathname.includes("trailers") ? 1 : 0} to={`${contentIdUrl}/trailers`}>
+                Trailer
+              </Tab>
+              <Tab active={pathname.includes("cast") ? 1 : 0} to={`${contentIdUrl}/cast`}>
+                Cast
+              </Tab>
+              <Tab active={pathname.includes("production") ? 1 : 0} to={`${contentIdUrl}/production`}>
+                Production
+              </Tab>
+              {isMovie && (
+                <Tab
+                  active={pathname.includes("collections") ? 1 : 0}
+                  to={`${contentIdUrl}/collections`}
+                >
+                  Collections
+                </Tab>
+              )}
+              {!isMovie && (
+                <Tab active={pathname.includes("seasons") ? 1 : 0} to={`${contentIdUrl}/seasons`}>
+                  Seasons
+                </Tab>
+              )}
+            </InfoTabs>
+            <Route path={`${baseUrl}/:id/trailers`} component={Trailers} />
+          </DataRow>
         </Data>
       </Content>
     </Container>
