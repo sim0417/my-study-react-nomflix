@@ -7,7 +7,7 @@ const Container = styled.div`
   width: 100%;
 
   display: grid;
-  align-items: center;
+  align-items: flex-start;
   grid-template-columns: repeat(3, minmax(70px, 1fr));
   grid-gap: 10px;
 `;
