@@ -10,6 +10,10 @@ const api = axios.create({
   },
 });
 
+export const collectionApi = {
+  collectionDetail: (id) => api.get(`collection/${id}`),
+};
+
 export const moviesApi = {
   nowPlaying: () => api.get("movie/now_playing"),
   upComing: () => api.get("movie/upcoming"),
@@ -27,6 +31,7 @@ export const moviesApi = {
       },
     }),
   videos: (id) => api.get(`movie/${id}/videos`),
+  credits: (id) => api.get(`movie/${id}/credits`),
 };
 
 export const tvApi = {
@@ -46,4 +51,5 @@ export const tvApi = {
       },
     }),
   videos: (id) => api.get(`tv/${id}/videos`),
+  credits: (id) => api.get(`tv/${id}/credits`),
 };

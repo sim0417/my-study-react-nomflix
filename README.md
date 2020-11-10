@@ -22,11 +22,18 @@ Learning REACT and ES6 by building a Movie Discovery App.
 
 ## Code Challenges
 
-- [ ] IMDB Link
-- [ ] Tabs inside of Movie / Show Details (YT Videos, Production Company & Countries)
-- [ ] Collections Link
-- [ ] Collections Route
-- [ ] On TV Show, show seasons and creators
+- [x] IMDB Link
+- [x] Tabs inside of Movie / Show Details (YT Videos, Production Company & Countries)
+- [x] Collections Link
+- [x] Collections Route
+- [x] On TV Show, show seasons and creators
+
+## Next Update plan
+
+- [ ] Style up ( Slide list, Responsive UI for mobile, more beautiful things... )
+- [ ] use state management lib (redux or Mobx)
+- [ ] use GraphQL
+- [ ] use TypeScript
 
 ## Preview
 

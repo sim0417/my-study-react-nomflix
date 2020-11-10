@@ -3,6 +3,10 @@ import styled from "styled-components";
 import Helmet from "react-helmet";
 import Loader from "Components/Loader";
 import Trailers from "./Trailers";
+import Cast from "./Cast";
+import Production from "./Production";
+import Collection from "./Collection";
+import Seasons from "./Seasons";
 import { moviesApi, tvApi } from "api";
 import { Route, Link } from "react-router-dom";
 
@@ -56,7 +60,10 @@ const Data = styled.div`
   grid-template-rows: 40% 60%;
 `;
 
-const DataRow = styled.div``;
+const DataRow = styled.div`
+  height: 100%;
+  overflow-y: auto;
+`;
 
 const Title = styled.h3`
   font-size: 32px;
@@ -160,7 +167,7 @@ export default (props) => {
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [id]);
 
   return loading ? (
     <>
@@ -215,26 +222,30 @@ export default (props) => {
                 Trailer
               </Tab>
               <Tab active={pathname.includes("cast") ? 1 : 0} to={`${contentIdUrl}/cast`}>
-                Cast
+                Cast & Crew
               </Tab>
               <Tab active={pathname.includes("production") ? 1 : 0} to={`${contentIdUrl}/production`}>
                 Production
               </Tab>
-              {isMovie && (
+              {isMovie && result.belongs_to_collection && (
                 <Tab
-                  active={pathname.includes("collections") ? 1 : 0}
-                  to={`${contentIdUrl}/collections`}
+                  active={pathname.includes("collection") ? 1 : 0}
+                  to={`/movie/${id}/collection/${result.belongs_to_collection.id}`}
                 >
                   Collections
                 </Tab>
               )}
-              {!isMovie && (
+              {!isMovie && result.seasons && (
                 <Tab active={pathname.includes("seasons") ? 1 : 0} to={`${contentIdUrl}/seasons`}>
                   Seasons
                 </Tab>
               )}
             </InfoTabs>
             <Route path={`${baseUrl}/:id/trailers`} component={Trailers} />
+            <Route path={`${baseUrl}/:id/cast`} component={Cast} />
+            <Route path={`${baseUrl}/:id/production`} component={Production} />
+            <Route path={`${baseUrl}/:id/collection/:colectionId`} component={Collection} />
+            <Route path={`${baseUrl}/:id/seasons`} component={Seasons} />
           </DataRow>
         </Data>
       </Content>

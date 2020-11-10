@@ -21,7 +21,7 @@ const VideoLink = styled.a`
     transition: transform 0.3s ease-in-out;
     &:hover {
       transform: scale(1.02);
-      box-shadow: 0px 0px 5px 1px rgba(51, 114, 143, 0.8);
+      box-shadow: 0px 0px 5px 1px rgba(0, 142, 207, 0.8);
     }
   }
 `;
@@ -62,6 +62,10 @@ export default (props) => {
         ({ data: videosData } = await tvApi.videos(parsedId));
       }
 
+      if (videosData.results.length > 6) {
+        videosData.results = videosData.results.slice(0, 6);
+      }
+
       setState(videosData.results);
     } catch (e) {
       setError("Can't find information.");
@@ -80,16 +84,17 @@ export default (props) => {
         <Container>
           {videos &&
             videos.length > 0 &&
-            videos.map((video, index) => (
-              <Video key={index}>
-                {video.site === "YouTube" && (
-                  <VideoLink href={`https://www.youtube.com/watch?v=${video.key}`}>
-                    <img src={`https://img.youtube.com/vi/${video.key}/sddefault.jpg`} />
-                    <Title>{video.name}</Title>
-                  </VideoLink>
-                )}
-              </Video>
-            ))}
+            videos.map(
+              (video, index) =>
+                video.site === "YouTube" && (
+                  <Video key={index}>
+                    <VideoLink href={`https://www.youtube.com/watch?v=${video.key}`} target="_blink">
+                      <img src={`https://img.youtube.com/vi/${video.key}/sddefault.jpg`} />
+                      <Title>{video.name}</Title>
+                    </VideoLink>
+                  </Video>
+                ),
+            )}
         </Container>
       )}
     </>
