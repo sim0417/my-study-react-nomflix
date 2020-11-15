@@ -31,8 +31,7 @@ Learning REACT and ES6 by building a Movie Discovery App.
 ## Next Update plan
 
 - [ ] Style up ( loading animation, Slide list, Responsive UI for mobile, more beautiful things... )
-- [ ] use state management lib (redux or Mobx)
-- [ ] use GraphQL
+- [ ] use state management lib
 - [ ] use TypeScript
 
 ## Preview
